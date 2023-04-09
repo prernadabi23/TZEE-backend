@@ -88,7 +88,7 @@ router.put('/favclass/:id', fetchUSER,
                 },
                 { new: true }
             )
-                .then(post => res.json({ likes: post.likes, unlikes: post.unlikes }))
+                .then(post => res.json(post))
                 .catch(err => res.status(400).json(err));
 
         } catch (error) {
