@@ -5,6 +5,7 @@ const User = require("../Models/User");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const fetchUSER = require('../Middleware/FtechUsers');
 
 router.post(
   "/createuser",
@@ -79,7 +80,7 @@ router.post("/loginuser",
           id: userdata.id,
         },
       };
-      
+
       const authToken = jwt.sign(data, jwtSecret);
 
       return res.json({
@@ -96,4 +97,19 @@ router.post("/loginuser",
     }
   }
 );
+
+router.get('/GetUser', fetchUSER, async (req, res) => {
+
+  try {
+    var userId = req.user.id
+    console.log(userId);
+    const user = await User.findById(userId)
+    res.send(user)
+  } catch (error) {
+    console.log({ "Error occouerd !!": error });
+    res.status(401).json(error)
+  }
+
+})
+
 module.exports = router;
