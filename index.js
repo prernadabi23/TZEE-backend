@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-require('dotenv').config({ path: path.resolve(__dirname, './process.env') })
+// require('dotenv').config({ path: path.resolve(__dirname, './process.env') })
 const app = express();
 const port = 5000;
 const mongoDB = require('./db')
